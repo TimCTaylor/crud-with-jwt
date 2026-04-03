@@ -1,0 +1,53 @@
+@baseUrl = http://localhost:5000
+@username = testuser
+@password = testpass123
+@friendEmail = testfriend@example.com
+
+### Register a user
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password}}"
+}
+
+### Login and start a session
+# Run this before the /friends requests so the session cookie is available.
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password}}"
+}
+
+### Get all friends
+GET {{baseUrl}}/friends
+
+### Get one friend by email
+GET {{baseUrl}}/friends/johnsmith@gamil.com
+
+### Add a friend
+POST {{baseUrl}}/friends
+Content-Type: application/json
+
+{
+  "email": "{{friendEmail}}",
+  "firstName": "Test",
+  "lastName": "Friend",
+  "DOB": "01-01-2000"
+}
+
+### Update a friend
+PUT {{baseUrl}}/friends/{{friendEmail}}
+Content-Type: application/json
+
+{
+  "firstName": "Updated",
+  "lastName": "Friend",
+  "DOB": "02-02-2001"
+}
+
+### Delete a friend
+DELETE {{baseUrl}}/friends/{{friendEmail}}
