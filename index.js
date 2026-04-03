@@ -109,6 +109,12 @@ app.post("/register", (req, res) => {
 
 const PORT =5000;
 
+// Note: reminder of routing 101: how to mount routers
+// I define the endpoints for the /friends base path inside friends.js in the router folder.
+// Inside friends.js, I do not know where my routes are being mounted. There is no reference to /friends.
+// (I am defining the friends router, not where the friends router is to be mounted)
+// The line below is the standard way of mounting the friends router to the /friends base path.
+// (The object 'routes' used in the line below comes from  const routes = require('./router/friends.js'))
 app.use("/friends", routes);
 
 app.listen(PORT,()=>console.log("Server is running"));
